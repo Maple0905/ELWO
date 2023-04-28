@@ -14,7 +14,7 @@ export default function Home() {
         <input className="text-lg w-full border-b border-gray-300 from-zinc-200 py-6 lg:static lg:rounded-xl lg:border lg:px-5" placeholder="Find your power tool by model, article number or EAN..." onChange={(e) => setProductName(e.target.value)} />
         <div className="px-5 py-5"><span className="text-md">Please select your tool : </span></div>
         {
-          productName == "Bosch GSR 12V" ? <ProductList products={products} /> : ''
+          productName != "" ? <ProductList products={products} /> : ''
         }
       </div>
     </Layout>
