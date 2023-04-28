@@ -11,11 +11,9 @@ export default function Home() {
   return (
     <Layout>
       <div className="max-w-7xl">
-        <input className="text-lg w-full border-b border-gray-300 from-zinc-200 py-6 lg:static lg:rounded-xl lg:border lg:px-5" placeholder="Find your power tool by model, article number or EAN..." onChange={(e) => setProductName(e.target.value)} />
+        <input className="text-lg w-full border-0 border-gray-300 from-zinc-200 py-6 lg:static lg:rounded-xl lg:border lg:px-5" placeholder="Find your power tool by model, article number or EAN..." onChange={(e) => setProductName(e.target.value)} />
         <div className="px-5 py-5"><span className="text-md">Please select your tool : </span></div>
-        {
-          productName != "" ? <ProductList products={products} /> : ''
-        }
+        <ProductList products={products} />
       </div>
     </Layout>
   )
