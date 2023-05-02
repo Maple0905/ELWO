@@ -16,11 +16,11 @@ export default function ProductDetail() {
           </div>
         </Link>
         <div>
-          <div className="pt-5 flex justiy-items-center mb-8">
-            <div>
-              <Image src={product.url} alt="Tool Logo" width={400} height={400} />
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-8">
+            <div className="col-span-1 sm:col-span-3">
+              <Image className="mx-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
             </div>
-            <div className="px-5 ml-8">
+            <div className="col-span-1 sm:col-span-9 mx-auto">
               <p className="opacity-75 text-lg mb-2">My selected tool</p>
               <p className="text-3xl font-bold mb-1">{product.name}</p>
               <p className="text-xl">{product.description}</p>

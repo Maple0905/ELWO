@@ -14,7 +14,7 @@ export default function Layout({ children  }: PropsWithChildren<any>) {
         <title>ELWO</title>
       </Head>
       <main
-        className={`flex min-h-screen items-center flex-col gap-8 p-24 ${inter.className}`}
+        className={`flex min-h-screen items-center flex-col gap-8 p-24 px-3 md:px-5 ${inter.className}`}
       >
         {children}
       </main>

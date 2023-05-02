@@ -14,27 +14,25 @@ export default function ToolDetail() {
             <p className="ml-2">Back</p>
           </div>
         </Link>
-        <div className="grid grid-cols-5 gap-8 mb-8">
-          <div className="col-span-1">
-            <Image src={tool.url} alt="Tool Logo" width={1000} height={1000} />
+        <div className="grid sm:grid-cols-12 gap-8 mb-8">
+          <div className="col-span-1 sm:col-span-3">
+            <Image className="mx-auto" src={tool.url} alt="Tool Logo" width={1000} height={1000} />
           </div>
-          <div className="col-span-4 px-5">
-            <div>
-              <p className="opacity-75 text-lg mb-2">My selected accessory</p>
-            </div>
-            <div className="flex justify-between">
-              <div>
+          <div className="col-span-1 sm:col-span-9 px-5">
+            <p className="opacity-75 text-lg mb-2">My selected accessory</p>
+            <div className="grid grid-cols-12">
+              <div className="col-span-12 mb-3 mb:mb-0 md:col-span-8">
                 <p className="text-3xl font-bold mb-1">{tool.name}</p>
                 <p className="text-xl">{tool.description2}</p>
               </div>
-              <div className="">
+              <div className="col-span-12 md:col-span-4 text-left md:text-right">
                 <p className="inline-block text-5xl font-bold italic mb-1">{tool.description1}</p>
               </div>
             </div>
             <div className="pt-8">
               <p className="text-xl">{tool.description3}</p>
             </div>
-            <div className="pt-8 grid grid-cols-2 gap-8">
+            <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="col-span-1">
                 <p className="text-xl pb-1">Specifications</p>
                 <hr className=""></hr>

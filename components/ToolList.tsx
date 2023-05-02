@@ -13,8 +13,8 @@ const ToolList = (props: IToolListProps) => {
   
   return (
     <div>
-      <div className="pb-2 flex justify-between items-center justify-center">
-        <p className="text-2xl">Batteries</p>
+      <div className="pb-2 sm:flex justify-between items-center justify-center">
+        <p className="text-2xl mb-3 sm:mb-0">Batteries</p>
         <div className="flex items-center">
           <p className="text-xl">Show as : </p>
           <button className="ml-5 flex items-center justify-center"  onClick={() => setShowMode("grid")}>
@@ -42,16 +42,17 @@ const ToolList = (props: IToolListProps) => {
                   </div>
                 </Link>
                 <div>
-                  <button className="bg-indigo-400 hover:bg-blue-600 text-white py-1 px-5 rounded">
+                  <button className="bg-indigo-400 hover:bg-blue-600 text-white py-1 px-5 mr-3 sm:mr-0 rounded">
                     <Link href={`/cart`}>Buy</Link>
                   </button>
                 </div>
               </div>
+              <hr></hr>
             </>
           )}
         </div>
         :
-        <div className="pt-5 mb-32 grid gap-8 text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
           {props.tools.map((tool, index) => <Tool tool={tool} key={index} />)}
         </div>
       }
