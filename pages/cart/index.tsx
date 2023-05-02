@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function ProductDetail() {
   return (
     <Layout>
-      <div className="max-w-7xl">
+      <div className="max-w-7xl w-full">
         <Link href={`/`}>
           <div className="flex items-center mb-5">
             <Image src="/prev.png" alt="Prev Icon" width={20} height={20} />
