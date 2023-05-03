@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next'
 import ProductList from '@/components/ProductList'
 import Layout from '@/components/Layout'
 import { useState } from 'react'
-import Search from '@/components/Search'
 
 export default function Home() {
 
@@ -13,7 +12,6 @@ export default function Home() {
     <Layout>
       <div className="max-w-7xl w-full">
         <div className="mx-auto max-w-3xl w-full mb-5">
-          {/* <Search /> */}
           <div className="flex">
             <input type="search" id="search-dropdown" className="block px-5 py-4 w-full text-lg text-gray-900 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Find your power tool by model, article number or EAN..." required onChange={(e) => setProductName(e.target.value)}/>
             <button type="submit" className="flex px-5 py-4 text-lg text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
@@ -23,7 +21,9 @@ export default function Home() {
           </div>
         </div>
         <div className="px-1 sm:px-5 py-5"><span className="text-lg">Please select your tool : </span></div>
-        <ProductList products={products} />
+        {
+          productName == 'Bosch GSR 12V' ? <ProductList products={products} /> : ''
+        }
       </div>
     </Layout>
   )
