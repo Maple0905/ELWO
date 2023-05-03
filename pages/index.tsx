@@ -20,9 +20,14 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="px-1 sm:px-5 py-5"><span className="text-lg">Please select your tool : </span></div>
         {
-          productName == 'Bosch GSR 12V' ? <ProductList products={products} /> : ''
+          productName == 'Bosch GSR 12V' ? 
+            (
+              <>
+                <div className="px-1 sm:px-5 py-5"><span className="text-lg">Please select your tool : </span></div>
+                <ProductList products={products} />
+              </>
+            ) : ''
         }
       </div>
     </Layout>
