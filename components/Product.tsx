@@ -14,11 +14,11 @@ interface IProductProps {
 
 const Product = (props: IProductProps) => {
   return (
-    <div className="col-span-1 border border-gray-300 bg-gray-100">
-      <Link href={`product/${props.product.id}`} className="py-5">
-        <div className="py-5 mx-auto">
+    <div className="col-span-1 border-0 border-gray-300 bg-gray-100">
+      <Link href={`product/${props.product.id}`} className="py-5 px-5">
+        <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
           <Image
-            className="mx-auto px-5 md:px-0"
+            className="mx-auto"
             src={props.product.url}
             alt="Next.js Logo"
             width={200}
@@ -26,7 +26,7 @@ const Product = (props: IProductProps) => {
           />
         </div>
         <div className="text-center">
-          <p className="text-sm font-semibold md:text-md lg:text-lg">{props.product.name}</p>
+          <p className="text-sm md:text-md lg:text-lg font-semibold">{props.product.name}</p>
           <p className="text-sm md:text-md lg:text-lg">{props.product.type}</p>
         </div>
         <div className="mt-3">

@@ -16,11 +16,15 @@ export default function ProductDetail() {
           </div>
         </Link>
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-8">
-            <div className="col-span-1 sm:col-span-3">
-              <Image className="mx-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
+          <div className="grid grid-cols-2">
+            <div className="col-span-1 px-5 bg-[url('/elwotools-green-md.png')] bg-no-repeat bg-center bg-contain">
+              <div className="grid grid-cols-2">
+                <div className="col-start-2 col-span-1">
+                  <Image className="mx-auto my-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
+                </div>
+              </div>
             </div>
-            <div className="col-span-1 sm:col-span-9 mx-auto">
+            <div className="col-span-1 px-5 mx-auto my-auto">
               <p className="opacity-75 text-lg mb-2">My selected tool</p>
               <p className="text-3xl font-bold mb-1">{product.name}</p>
               <p className="text-xl">{product.description}</p>
@@ -44,6 +48,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -51,6 +56,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -58,6 +64,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -65,6 +72,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
 ]

@@ -14,11 +14,11 @@ export default function ProductDetail() {
             <p className="ml-2">Start page</p>
           </div>
         </Link>
-        <div className="grid justify-items-center">
-          <div>
-            <Image src="/cart-check.png" alt="Cart Check" width={120} height={120} />
+        <div className="">
+          <div className="pt-8 bg-[url('/elwotools-green-lg.png')] bg-no-repeat bg-bottom bg-cover">
+            <Image className="mx-auto" src="/cart-check.png" alt="Cart Check" width={150} height={150} />
           </div>
-          <div className="pt-5">
+          <div className="pt-5 text-center">
             <p className="text-4xl font-bold">Added to cart!</p>
           </div>
         </div>
@@ -40,6 +40,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -47,6 +48,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -54,6 +56,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
   {
@@ -61,6 +64,7 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
+    price: "2.545",
     url: "/tool.png",
   },
 ]
