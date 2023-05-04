@@ -30,7 +30,7 @@ const Product = (props: IProductProps) => {
           <p className="text-sm md:text-md lg:text-lg">{props.product.type}</p>
         </div>
         <div className="mt-3">
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-2 content-end">
             <div className="col-start-2 col-span-1 text-center text-white py-2 bg-green-600">
               Buy
             </div>

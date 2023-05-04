@@ -14,42 +14,25 @@ export default function ToolDetail() {
             <p className="ml-2">Back</p>
           </div>
         </Link>
-        <div className="grid sm:grid-cols-12 gap-8 mb-8">
-          <div className="col-span-1 sm:col-span-3">
+        <div className="grid grid-cols-2 gap-8">
+          <div className="col-span-1 px-5 bg-[url('/elwotools-green-lg.png')] bg-no-repeat bg-center bg-contain">
             <Image className="mx-auto" src={tool.url} alt="Tool Logo" width={1000} height={1000} />
           </div>
-          <div className="col-span-1 sm:col-span-9 px-5">
-            <p className="opacity-75 text-lg mb-2">My selected accessory</p>
-            <div className="grid grid-cols-12">
-              <div className="col-span-12 mb-3 mb:mb-0 md:col-span-8">
-                <p className="text-3xl font-bold mb-1">{tool.name}</p>
+          <div className="col-span-1 px-5 flex flex-col content-between">
+            <div className="">
+              <div>
+                <p className="text-xl font-semibold">{tool.description1}</p>
                 <p className="text-xl">{tool.description2}</p>
               </div>
-              <div className="col-span-12 md:col-span-4 text-left md:text-right">
-                <p className="inline-block text-5xl font-bold italic mb-1">{tool.description1}</p>
+              <div className="py-5">
+                <p className="text-5xl font-bold mb-1">{tool.name}</p>
+              </div>
+              <div className="">
+                <p className="text-xl">{tool.description3}</p>
               </div>
             </div>
             <div className="pt-8">
-              <p className="text-xl">{tool.description3}</p>
-            </div>
-            <div className="pt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="col-span-1">
-                <p className="text-xl pb-1">Specifications</p>
-                <hr className=""></hr>
-                <div className="flex justify-between mr-3 py-2">
-                  <p className="text-xl">Voltage</p>
-                  <p className="text-xl">{tool.Voltage}</p>
-                </div>
-                <hr className=""></hr>
-                <div className="flex justify-between mr-3 py-2">
-                  <p className="text-xl">EAN</p>
-                  <p className="text-xl">{tool.EAN}</p>
-                </div>
-              </div>
-              <div className="col-span-1 flex items-end justify-end">
-                <button className="bg-indigo-400 hover:bg-blue-600 text-white py-3 px-8 rounded">
-                  <Link href={`/cart`}>Buy</Link>
-                </button>
+              <div>
               </div>
             </div>
           </div>
@@ -63,8 +46,8 @@ export const tool = {
   id: "",
   productId: "1",
   name: "Bosch GSR 12V",
-  description1: "626 kr",
-  description2: "Bosch 12V Li-ion 3.0Ah stick battery. Fits Bosch 10.8V and 12V cordless tools.",
+  description1: "TELCO S2",
+  description2: "ART NR 207-1567",
   description3: "Bosch Professional - Machines and accessories such as batteries and chargers from Bosch Professional are only compatible with other products in the same series, i.e. the blue Bosch Professional series. This means that you cannot use blue Bosch products together with products from the green Bosch DIY series. Bosch 12V Li-ion 3.0Ah stick battery. Fits Bosch 10.8V and 12V cordless tools.",
   Voltage: "12V",
   EAN: "3165140730358",
