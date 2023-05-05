@@ -17,7 +17,7 @@ export default function ProductDetail() {
         </Link>
         <div>
           <div className="grid grid-cols-2">
-            <div className="col-span-1 px-5 bg-[url('/elwotools-green-md.png')] bg-no-repeat bg-center bg-contain">
+            <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
               <div className="grid grid-cols-2">
                 <div className="col-start-2 col-span-1">
                   <Image className="mx-auto my-auto" src={product.url} alt="Tool Logo" width={400} height={400} />

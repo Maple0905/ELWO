@@ -15,7 +15,7 @@ export default function ProductDetail() {
           </div>
         </Link>
         <div className="">
-          <div className="pt-8 bg-[url('/elwotools-green-lg.png')] bg-no-repeat bg-bottom bg-cover">
+          <div className="pt-8 bg-[url('/elwotools-green.png')] bg-no-repeat bg-bottom bg-cover">
             <Image className="mx-auto" src="/cart-check.png" alt="Cart Check" width={150} height={150} />
           </div>
           <div className="pt-5 text-center">

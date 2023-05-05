@@ -16,7 +16,7 @@ interface IToolProps {
 
 const Tool = (props: IToolProps) => {
   return (
-    <div className="col-span-1 border border-gray-300 bg-gray-100 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
+    <div className="col-span-1 border border-gray-300 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
       <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
         <div className="my-3 px-5 mx-auto">
           <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
