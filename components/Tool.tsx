@@ -18,7 +18,7 @@ const Tool = (props: IToolProps) => {
   return (
     <div className="col-span-1 border border-gray-300 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
       <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
-        <div className="my-3 px-5 mx-auto">
+        <div className="my-3 px-5">
           <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
           <Image
             className="mx-auto"
@@ -29,9 +29,9 @@ const Tool = (props: IToolProps) => {
           />
         </div>
         <div className="py-3 text-center">
-          <p className="text-sm md:text-md lg:text-lg font-semibold">{props.tool.name}</p>
+          <p className="text-md md:text-lg lg:text-xl font-semibold">{props.tool.name}</p>
           <p className="text-sm md:text-md lg:text-lg">{props.tool.type}</p>
-          <p className="text-sm md:text-md lg:text-lg font-semibold">{props.tool.price}</p>
+          <p className="text-sm md:text-md lg:text-lg font-black">{props.tool.price}</p>
         </div>
         <div className="">
           <button className=" bg-green-600 hover:bg-green-800 text-white py-3 w-full">
