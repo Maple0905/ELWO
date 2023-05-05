@@ -42,8 +42,8 @@ const ToolList = (props: IToolListProps) => {
                   </div>
                 </Link>
                 <div>
-                  <button className="bg-indigo-400 hover:bg-blue-600 text-white py-1 px-5 mr-3 sm:mr-0 rounded">
-                    <Link href={`/cart`}>Buy</Link>
+                  <button className="bg-green-600 hover:bg-green-800 text-white py-1 px-5 mr-3 sm:mr-0 rounded">
+                    <Link href={`/cart`}>Add to Cart</Link>
                   </button>
                 </div>
               </div>

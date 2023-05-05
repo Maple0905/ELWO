@@ -1,12 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
+import styles from '../public/css/custom.module.css';
 
 export interface ITool {
   id: string
   productId: string
   name: string
   type: string
-  price: string
+  prevPrice: string
+  currentPrice: string
+  fee: string
   url: string
 }
 
@@ -29,9 +32,23 @@ const Tool = (props: IToolProps) => {
           />
         </div>
         <div className="py-3 text-center">
-          <p className="text-md md:text-lg lg:text-xl font-semibold">{props.tool.name}</p>
-          <p className="text-sm md:text-md lg:text-lg">{props.tool.type}</p>
-          <p className="text-sm md:text-md lg:text-lg font-black">{props.tool.price}</p>
+          <p className="text-xl font-semibold">{props.tool.name}</p>
+          <p className="text-lg">{props.tool.type}</p>
+          <div className="flex pb-3">
+            <div className="flex justify-content-center items-center">
+              <span className="text-md font-black z-20"><span className={styles.toolList}>{props.tool.prevPrice + ':-'}</span></span>
+              <span className="ml-2 text-red-600 text-xl font-black">{props.tool.currentPrice + ':'}</span>
+            </div>
+            <div className="relative">
+              <div className={`absolute text-red-600 text-xl ${styles.toolListFee1}`}>{'-'}</div>
+            </div>
+            <div className="relative ml-5">
+              <div className={`absolute text-white text-xl ${styles.toolListFee2}`}>{'-'}</div>
+              <div className="ml-3 bg-red-600 text-white text-md font-black">
+                <p className="ml-3">{props.tool.fee + '%'}</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="">
           <button className=" bg-green-600 hover:bg-green-800 text-white py-3 w-full">

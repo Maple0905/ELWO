@@ -40,7 +40,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -48,7 +50,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -56,7 +60,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -64,7 +70,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
 ]

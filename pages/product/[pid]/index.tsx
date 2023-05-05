@@ -1,11 +1,32 @@
+import { useState, useEffect } from 'react';
 import { ITool } from '@/components/Tool'
 import { GetServerSideProps } from 'next'
 import ToolList from '@/components/ToolList'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function ProductDetail() {
+
+  // const [tools, setTools] = useState<ITool[]>([]);
+  const router = useRouter();
+  const query = router.query;
+
+  const getTools = async () => {
+    await axios.get(`https://staging-et01.jinoteco.se/api/v1/products?page=0&count=20&fitment=${query.pid}&lang=sv`)
+      .then((res) => {
+        console.log(res.data);
+        // setTools(res.data);
+        debugger;
+      });
+  }
+
+  useEffect(() => {
+    // getTools();
+  });
+
   return (
     <Layout>
       <div className="max-w-7xl w-full">
@@ -48,7 +69,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -56,7 +79,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -64,7 +89,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
   {
@@ -72,7 +99,9 @@ export const tools: ITool[] = [
     productId: "1",
     name: "12V Battery",
     type: "Battery",
-    price: "2.545",
+    prevPrice: "2.545",
+    currentPrice: "1.795",
+    fee: "15",
     url: "/tool.png",
   },
 ]

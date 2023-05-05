@@ -23,7 +23,7 @@ export default function ToolDetail() {
             <p className="ml-2">Back</p>
           </div>
         </Link>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
             <Image className="mx-auto" src={tool.url} alt="Tool Logo" width={1000} height={1000} />
           </div>
@@ -41,22 +41,22 @@ export default function ToolDetail() {
               </div>
             </div>
             <div className="pt-8">
-              <div className="flex pb-3">
+              <div className="flex pb-3 w-full">
                 <div className="flex justify-content-center items-center">
-                  <span className="text-4xl font-black z-20"><span className={styles.strikethrough}>{tool.prevPrice + ':-'}</span></span>
+                  <span className="text-4xl font-black z-20"><span className={styles.toolDetail}>{tool.prevPrice + ':-'}</span></span>
                   <span className="ml-10 text-red-600 text-6xl font-black">{tool.currentPrice + ':'}</span>
                 </div>
                 <div className="relative">
-                  <div className={`absolute text-red-600 text-6xl ${styles.toolFee1}`}>{'-'}</div>
+                  <div className={`absolute text-red-600 text-6xl ${styles.toolDetailFee1}`}>{'-'}</div>
                 </div>
                 <div className="relative ml-5">
-                  <div className={`absolute text-white text-6xl ${styles.toolFee2}`}>{'-'}</div>
+                  <div className={`absolute text-white text-6xl ${styles.toolDetailFee2}`}>{'-'}</div>
                   <div className="ml-3 bg-red-600 text-white text-5xl font-black">
                     <div className="ml-3 py-2">{tool.fee + '%'}</div>
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-12">
+              <div className="grid grid-cols-1 sm:grid-cols-12">
                 <div className="col-span-1 sm:col-start-6 sm:col-span-7">
                   <div className="grid justify-items-center py-5">
                     <Box
