@@ -63,7 +63,7 @@ export default function ToolDetail() {
                 {/* <div className="relative">
                   <div className={`absolute text-red-600 text-5xl ${styles.toolDetailFee1}`}>{'-'}</div>
                 </div> */}
-                <div className="relative ml-5">
+                <div className="relative">
                   <div className={`absolute text-white font-black text-5xl ${styles.toolDetailFee2}`}>{'-'}</div>
                   <div className="ml-2 bg-red-600 text-white text-4xl font-black rounded">
                     <div className="ml-3 mr-1 py-1">{tool.fee + '%'}</div>
