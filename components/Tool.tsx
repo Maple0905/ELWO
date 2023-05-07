@@ -43,11 +43,11 @@ const Tool = (props: IToolProps) => {
             <div className="flex items-center justify-center pb-3">
               <div className="flex justify-center items-center">
                 <span className="text-md font-black z-20"><span className={styles.toolList}>{props.tool.prevPrice + ':-'}</span></span>
-                <span className="ml-2 text-red-600 text-xl font-black">{props.tool.currentPrice + ':'}</span>
+                <span className="ml-2 text-red-600 text-xl font-black">{props.tool.currentPrice + ':-'}</span>
               </div>
-              <div className="relative">
+              {/* <div className="relative">
                 <div className={`absolute text-red-600 text-xl ${styles.toolListFee1}`}>{'-'}</div>
-              </div>
+              </div> */}
               <div className="relative flex justify-center items-center">
                 <div className={`absolute text-white text-xl ${styles.toolListFee2}`}>{'-'}</div>
                 <div className="ml-3 bg-red-600 text-white text-md font-black rounded-sm">
