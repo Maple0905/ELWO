@@ -37,7 +37,7 @@ const Tool = (props: IToolProps) => {
           />
         </div>
         <div className="py-3 text-center">
-          <p className="text-xl font-semibold">{props.tool.name}</p>
+          <p className="text-xl font-black">{props.tool.name}</p>
           <p className="text-lg">{props.tool.type}</p>
           <div className="mx-auto">
             <div className="flex items-center justify-center pb-3">
