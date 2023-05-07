@@ -54,16 +54,19 @@ export default function ToolDetail() {
             <div className="">
               <div className="flex pb-3 w-full">
                 <div className="flex justify-content-center items-center">
-                  <span className="text-4xl font-black z-20"><span className={styles.toolDetail}>{tool.prevPrice + ':-'}</span></span>
-                  <span className="ml-10 text-red-600 text-6xl font-black">{tool.currentPrice + ':'}</span>
+                  <span className="text-4xl font-black z-20"><span className={styles.toolDetail}>{tool.prevPrice + ':'}</span></span>
+                  <div className="relative">
+                    <div className={`absolute text-5xl ${styles.toolDetailFee3}`}>{'-'}</div>
+                  </div>
+                  <span className="ml-6 text-red-600 text-5xl font-black">{tool.currentPrice + ':'}</span>
                 </div>
                 <div className="relative">
-                  <div className={`absolute text-red-600 text-6xl ${styles.toolDetailFee1}`}>{'-'}</div>
+                  <div className={`absolute text-red-600 text-5xl ${styles.toolDetailFee1}`}>{'-'}</div>
                 </div>
                 <div className="relative ml-5">
-                  <div className={`absolute text-white text-6xl ${styles.toolDetailFee2}`}>{'-'}</div>
-                  <div className="ml-3 bg-red-600 text-white text-5xl font-black rounded">
-                    <div className="ml-3 mr-1 py-2">{tool.fee + '%'}</div>
+                  <div className={`absolute text-white text-5xl ${styles.toolDetailFee2}`}>{'-'}</div>
+                  <div className="ml-2 bg-red-600 text-white text-4xl font-black rounded">
+                    <div className="ml-3 mr-1 py-1">{tool.fee + '%'}</div>
                   </div>
                 </div>
               </div>

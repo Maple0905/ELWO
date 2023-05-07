@@ -23,8 +23,13 @@
 }
 
 .toolDetailFee2 {
-  left: 5px;
+  left: 2px;
   top: -2px;
+}
+
+.toolDetailFee3 {
+  left: -1px;
+  top: -30px;
 }
 
 .toolList {
@@ -72,4 +77,8 @@
   content: "";
   bottom: 0;
   right: 0;
+}
+
+.ml-6 {
+  margin-left: 1.5rem;
 }
