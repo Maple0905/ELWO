@@ -47,11 +47,29 @@
 }
 
 .toolListFee1 {
-  left: 0;
-  top: -3px;
+  left: 1px;
+  top: -16px;
 }
 
 .toolListFee2 {
-  left: -1px;
-  top: -3px;
+  left: 10px;
+  top: -4px;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.wishlist {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+}
+
+.toolColor {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  right: 0;
 }

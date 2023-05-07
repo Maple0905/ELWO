@@ -52,7 +52,7 @@ const ToolList = (props: IToolListProps) => {
           )}
         </div>
         :
-        <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
           {props.tools.map((tool, index) => <Tool tool={tool} key={index} />)}
         </div>
       }

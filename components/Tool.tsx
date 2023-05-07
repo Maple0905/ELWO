@@ -19,7 +19,12 @@ interface IToolProps {
 
 const Tool = (props: IToolProps) => {
   return (
-    <div className="col-span-1 border border-gray-300 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
+    <div className="col-span-1 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
+      <div className="relative">
+        <div className={`rounded-bl-lg bg-red-600 text-sm text-white py-3 px-3 ${styles.wishlist}`}>
+          Wish
+        </div>
+      </div>
       <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
         <div className="my-3 px-5">
           <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
@@ -34,18 +39,20 @@ const Tool = (props: IToolProps) => {
         <div className="py-3 text-center">
           <p className="text-xl font-semibold">{props.tool.name}</p>
           <p className="text-lg">{props.tool.type}</p>
-          <div className="flex pb-3">
-            <div className="flex justify-content-center items-center">
-              <span className="text-md font-black z-20"><span className={styles.toolList}>{props.tool.prevPrice + ':-'}</span></span>
-              <span className="ml-2 text-red-600 text-xl font-black">{props.tool.currentPrice + ':'}</span>
-            </div>
-            <div className="relative">
-              <div className={`absolute text-red-600 text-xl ${styles.toolListFee1}`}>{'-'}</div>
-            </div>
-            <div className="relative ml-5">
-              <div className={`absolute text-white text-xl ${styles.toolListFee2}`}>{'-'}</div>
-              <div className="ml-3 bg-red-600 text-white text-md font-black">
-                <p className="ml-3">{props.tool.fee + '%'}</p>
+          <div className="mx-auto">
+            <div className="flex items-center justify-center pb-3">
+              <div className="flex justify-center items-center">
+                <span className="text-md font-black z-20"><span className={styles.toolList}>{props.tool.prevPrice + ':-'}</span></span>
+                <span className="ml-2 text-red-600 text-xl font-black">{props.tool.currentPrice + ':'}</span>
+              </div>
+              <div className="relative">
+                <div className={`absolute text-red-600 text-xl ${styles.toolListFee1}`}>{'-'}</div>
+              </div>
+              <div className="relative flex justify-center items-center">
+                <div className={`absolute text-white text-xl ${styles.toolListFee2}`}>{'-'}</div>
+                <div className="ml-3 bg-red-600 text-white text-md font-black rounded-sm">
+                  <p className="ml-2 mr-1">{props.tool.fee + '%'}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -53,7 +60,7 @@ const Tool = (props: IToolProps) => {
         <div className="">
           <button className=" bg-green-600 hover:bg-green-800 text-white py-3 w-full">
             <Link href={`/cart`} className="flex justify-center items-center">
-              <p>Added to cart</p>
+              <p>Add to cart</p>
               <svg className="ml-3" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
                 <g transform="translate(0 0)">
                   <g>

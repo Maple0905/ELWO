@@ -10,21 +10,18 @@ import { useRouter } from 'next/router';
 
 export default function ProductDetail() {
 
-  // const [tools, setTools] = useState<ITool[]>([]);
   const router = useRouter();
   const query = router.query;
 
   const getTools = async () => {
-    await axios.get(`https://staging-et01.jinoteco.se/api/v1/products?page=0&count=20&fitment=${query.pid}&lang=sv`)
+    await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${query.pid}&lang=sv`)
       .then((res) => {
-        console.log(res.data);
         // setTools(res.data);
-        debugger;
       });
   }
 
   useEffect(() => {
-    // getTools();
+    getTools();
   });
 
   return (
@@ -37,7 +34,7 @@ export default function ProductDetail() {
           </div>
         </Link>
         <div>
-          <div className="grid grid-cols-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2">
             <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
               <div className="grid grid-cols-2">
                 <div className="col-start-2 col-span-1">
@@ -45,7 +42,7 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
-            <div className="col-span-1 px-5 mx-auto my-auto">
+            <div className="col-span-1 pt-5 sm:pt-0 px-5 mx-auto my-auto">
               <p className="opacity-75 text-lg mb-2">My selected tool</p>
               <p className="text-3xl font-bold mb-1">{product.name}</p>
               <p className="text-xl">{product.description}</p>

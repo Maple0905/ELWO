@@ -18,9 +18,8 @@ export default function Products() {
 
     const getProducts = async () => {
       try {
-        await axios.get(`https://staging-et01.jinoteco.se/api/v1/fitment/model/name?search=${query.name}`)
+        await axios.get(`${process.env.API_URL}/fitment/model/name?search=${query.name}`)
           .then((res) => {
-            console.log(res.data);
             if (isMounted) {
               setSearchProducts(res.data);
             }

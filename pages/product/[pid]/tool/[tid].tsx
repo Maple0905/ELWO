@@ -6,6 +6,8 @@ import { Rating } from '@mui/material'
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import { useState } from 'react'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import styles from '../../../../public/css/custom.module.css';
 
 export default function ToolDetail() {
@@ -25,9 +27,18 @@ export default function ToolDetail() {
         </Link>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
-            <Image className="mx-auto" src={tool.url} alt="Tool Logo" width={1000} height={1000} />
+            <div>
+              <Carousel showThumbs={true} thumbWidth={100}>
+                <div>
+                  <img src="/product.png" />
+                </div>
+                <div>
+                  <img src="/tool.png" />
+                </div>
+              </Carousel>
+            </div>
           </div>
-          <div className="col-span-1 px-5 flex flex-col content-between">
+          <div className="col-span-1 px-5 flex flex-col justify-between">
             <div className="">
               <div>
                 <p className="text-xl font-semibold">{tool.description1}</p>
@@ -40,7 +51,7 @@ export default function ToolDetail() {
                 <p className="text-xl">{tool.description3}</p>
               </div>
             </div>
-            <div className="pt-8">
+            <div className="">
               <div className="flex pb-3 w-full">
                 <div className="flex justify-content-center items-center">
                   <span className="text-4xl font-black z-20"><span className={styles.toolDetail}>{tool.prevPrice + ':-'}</span></span>
@@ -51,12 +62,12 @@ export default function ToolDetail() {
                 </div>
                 <div className="relative ml-5">
                   <div className={`absolute text-white text-6xl ${styles.toolDetailFee2}`}>{'-'}</div>
-                  <div className="ml-3 bg-red-600 text-white text-5xl font-black">
-                    <div className="ml-3 py-2">{tool.fee + '%'}</div>
+                  <div className="ml-3 bg-red-600 text-white text-5xl font-black rounded">
+                    <div className="ml-3 mr-1 py-2">{tool.fee + '%'}</div>
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-12">
+              <div className="grid grid-cols-1 sm:grid-cols-12 pr-5">
                 <div className="col-span-1 sm:col-start-6 sm:col-span-7">
                   <div className="grid justify-items-center py-5">
                     <Box
@@ -87,8 +98,8 @@ export default function ToolDetail() {
                   <div className="grid justify-items-center">
                     <div className="flex w-full">
                       <input type="number" className="w-20 p-2.5 z-20 text-lg text-gray-900 border-4 border-green-700" min={1} value={cartCount} onChange={(e) => setCartCount(parseInt(e.target.value))} />
-                      <button type="submit" className="top-0 right-0 left-20 p-2.5 w-full text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800">
-                        <svg className="mx-auto" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
+                      <Link href={`/cart`} className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800">
+                        <svg className="mx-auto my-auto flex items-center" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
                           <g transform="translate(0 0)">
                             <g>
                               <path data-name="Path 16787" d="M4.738,472.271h7.814a.434.434,0,0,0,.414-.328l1.723-6.316a.466.466,0,0,0-.071-.4.424.424,0,0,0-.344-.179H3.745L3.437,463.6a.435.435,0,0,0-.421-.353H.431a.451.451,0,0,0,0,.9h2.24c.054.257,1.474,6.946,1.555,7.33a1.36,1.36,0,0,0-.779,1.242,1.326,1.326,0,0,0,1.293,1.354h7.812a.452.452,0,0,0,0-.9H4.74a.451.451,0,0,1,0-.9Zm8.966-6.317-1.477,5.414H5.085l-1.149-5.414Z" transform="translate(0 -463.248)" fill="currentColor"></path>
@@ -97,7 +108,7 @@ export default function ToolDetail() {
                             </g>
                           </g>
                         </svg>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
