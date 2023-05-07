@@ -25,7 +25,7 @@ export default function ProductDetail() {
         <div className="pt-8">
           <p className="text-xl sm:text-2xl mb-3">Interested in any of these compatible accessories?</p>
           <hr className="bg-black" />
-          <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
+          <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
             {tools.map((tool, index) => <Tool tool={tool} key={index} />)}
           </div>
         </div>
