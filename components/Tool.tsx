@@ -49,7 +49,7 @@ const Tool = (props: IToolProps) => {
                 <div className={`absolute text-red-600 text-xl ${styles.toolListFee1}`}>{'-'}</div>
               </div> */}
               <div className="relative flex justify-center items-center">
-                <div className={`absolute text-white text-xl ${styles.toolListFee2}`}>{'-'}</div>
+                <div className={`absolute text-white text-xl font-black ${styles.toolListFee2}`}>{'-'}</div>
                 <div className="ml-1 bg-red-600 text-white text-md font-black rounded-sm">
                   <p className="ml-2 mr-1">{props.tool.fee + '%'}</p>
                 </div>
