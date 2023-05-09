@@ -19,7 +19,7 @@ export default function ToolDetail() {
   return (
     <Layout>
       <div className="max-w-7xl w-full">
-        <Link href={`/product/${tool.productId}`}>
+        <Link href={`/product/060137B202`}>
           <div className="flex items-center mb-5">
             <Image src="/prev.png" alt="Prev Icon" width={20} height={20} />
             <p className="ml-2">Back</p>
