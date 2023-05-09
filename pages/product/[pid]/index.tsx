@@ -10,18 +10,56 @@ import { useRouter } from 'next/router';
 
 export default function ProductDetail() {
 
+  const [cart, setCart] = useState(false);
+  const [tools, setTools] = useState<ITool[]>([]);
+  const [product, setProduct] = useState({
+    name: "",
+    description: "",
+    url: "",
+  });
+  let name: any, description: any, url: any;
   const router = useRouter();
   const query = router.query;
 
   const getTools = async () => {
     await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${query.pid}&lang=sv`)
       .then((res) => {
-        // setTools(res.data);
+        const data = res.data;
+
+        let toolData: ITool[] = [];
+        data['products'].map((item: any) => {
+          const tool: ITool = {
+            id: item.id,
+            productId: item.id,
+            name: item.description.name,
+            type: item.type.description.name,
+            prevPrice: "2.545",
+            currentPrice: "1.745",
+            fee: "15",
+            url: "/tool.png"
+          };
+          toolData.push(tool);
+        });
+
+        name = data['products'].at(0).description.name,
+        description = data['products'].at(0).description.description,
+        url = "/product.png",
+        // setProduct({
+        //   name: data['products'].at(0).description.name,
+        //   description: data['products'].at(0).description.description,
+        //   url: "/product.png",
+        // });
+        setTools(toolData);
       });
+  }
+
+  const handleCart = () => {
+    setCart(true);
   }
 
   useEffect(() => {
     getTools();
+    setProduct({ name: name, description: description, url: url });
   });
 
   return (
@@ -33,87 +71,41 @@ export default function ProductDetail() {
             <p className="ml-2">Back</p>
           </div>
         </Link>
-        <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2">
-            <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
-              <div className="grid grid-cols-2">
-                <div className="col-start-2 col-span-1">
-                  <Image className="mx-auto my-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
+        {
+          cart == true ? 
+          <div className="">
+            <div className="pt-8 bg-[url('/elwotools-green.png')] bg-no-repeat bg-bottom bg-cover">
+              <Image className="mx-auto" src="/cart-check.png" alt="Cart Check" width={150} height={150} />
+            </div>
+            <div className="pt-5 text-center">
+              <p className="text-4xl font-bold">Added to cart!</p>
+            </div>
+          </div>
+          :
+          <div>
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+              <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
+                <div className="grid grid-cols-2">
+                  <div className="col-start-2 col-span-1">
+                    <Image className="mx-auto my-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
+                  </div>
                 </div>
               </div>
+              <div className="col-span-1 pt-5 sm:pt-0 px-5 mx-auto my-auto">
+                <p className="opacity-75 text-lg mb-2">My selected tool</p>
+                <p className="text-3xl font-bold mb-1">{product.name}</p>
+                <p className="text-xl">{product.description}</p>
+              </div>
             </div>
-            <div className="col-span-1 pt-5 sm:pt-0 px-5 mx-auto my-auto">
-              <p className="opacity-75 text-lg mb-2">My selected tool</p>
-              <p className="text-3xl font-bold mb-1">{product.name}</p>
-              <p className="text-xl">{product.description}</p>
+            <div className="py-8">
+              <p className="text-lg mb-2">Accessories compatible with this tool :</p>
             </div>
           </div>
-          <div className="py-8">
-            <p className="text-lg mb-2">Accessories compatible with this tool :</p>
-          </div>
-        </div>
+        }
         <div className="">
-          <ToolList tools={tools} />
+          <ToolList tools={tools} handleCart={handleCart} />
         </div>
       </div>
     </Layout>
   )
-}
-
-export const tools: ITool[] = [
-  {
-    id: "1",
-    productId: "1",
-    name: "12V Battery",
-    type: "Battery",
-    prevPrice: "2.545",
-    currentPrice: "1.795",
-    fee: "15",
-    url: "/tool.png",
-  },
-  {
-    id: "2",
-    productId: "1",
-    name: "12V Battery",
-    type: "Battery",
-    prevPrice: "2.545",
-    currentPrice: "1.795",
-    fee: "15",
-    url: "/tool.png",
-  },
-  {
-    id: "3",
-    productId: "1",
-    name: "12V Battery",
-    type: "Battery",
-    prevPrice: "2.545",
-    currentPrice: "1.795",
-    fee: "15",
-    url: "/tool.png",
-  },
-  {
-    id: "4",
-    productId: "1",
-    name: "12V Battery",
-    type: "Battery",
-    prevPrice: "2.545",
-    currentPrice: "1.795",
-    fee: "15",
-    url: "/tool.png",
-  },
-]
-
-export const product = {
-  id: "1",
-  name: "Bosch GSR 12V",
-  description: "Flexible 12V drill driver with 30Nm and up to 1300 revolutions per minute. Including bit holder adapter, offset angle adapter and angle adapter.",
-  url: "/product.png"
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return {
-    props: {
-      product,
-    },
-  }
 }

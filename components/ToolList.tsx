@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 
 interface IToolListProps {
-  tools: ITool[]
+  tools: ITool[],
+  handleCart: () => void,
 }
 
 const ToolList = (props: IToolListProps) => {
 
   const [ showMode, setShowMode ] = useState("grid");
-  
+
   return (
     <div>
       <div className="pb-2 sm:flex justify-between items-center justify-center">
@@ -42,8 +43,9 @@ const ToolList = (props: IToolListProps) => {
                   </div>
                 </Link>
                 <div>
-                  <button className="bg-green-600 hover:bg-green-800 text-white py-1 px-5 mr-3 sm:mr-0 rounded">
-                    <Link href={`/cart`}>Add to Cart</Link>
+                  <button className="bg-green-600 hover:bg-green-800 text-white py-1 px-5 mr-3 sm:mr-0 rounded" onClick={props.handleCart}>
+                    {/* <Link href={`/cart`}>Add to Cart</Link> */}
+                    Add to Cart
                   </button>
                 </div>
               </div>
@@ -53,7 +55,7 @@ const ToolList = (props: IToolListProps) => {
         </div>
         :
         <div className="pt-5 mb-32 text-center grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:mb-0 lg:grid-cols-4 lg:text-left">
-          {props.tools.map((tool, index) => <Tool tool={tool} key={index} />)}
+          {props.tools.map((tool, index) => <Tool tool={tool} key={index} handleCart={props.handleCart} />)}
         </div>
       }
     </div>
