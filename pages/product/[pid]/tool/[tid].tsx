@@ -101,7 +101,8 @@ export default function ToolDetail() {
                   <div className="grid justify-items-center">
                     <div className="flex w-full">
                       <input type="number" className="w-20 p-2.5 z-20 text-lg text-gray-900 border-4 border-green-700" min={1} value={cartCount} onChange={(e) => setCartCount(parseInt(e.target.value))} />
-                      <Link href={`/cart`} className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800">
+                      {/* <Link href={`/cart`} className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800"> */}
+                      <div className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800">
                         <svg className="mx-auto my-auto flex items-center" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
                           <g transform="translate(0 0)">
                             <g>
@@ -111,7 +112,7 @@ export default function ToolDetail() {
                             </g>
                           </g>
                         </svg>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

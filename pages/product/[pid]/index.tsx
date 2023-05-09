@@ -8,16 +8,23 @@ import Link from 'next/link'
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
+interface IProduct {
+  tools: ITool[],
+  name: string,
+  description: string,
+  url: string
+}
+
 export default function ProductDetail() {
 
   const [cart, setCart] = useState(false);
-  const [tools, setTools] = useState<ITool[]>([]);
-  const [product, setProduct] = useState({
+  // const [tools, setTools] = useState<ITool[]>([]);
+  const [product, setProduct] = useState<IProduct>({
+    tools: [],
     name: "",
     description: "",
     url: "",
   });
-  let name: any, description: any, url: any;
   const router = useRouter();
   const query = router.query;
 
@@ -41,15 +48,19 @@ export default function ProductDetail() {
           toolData.push(tool);
         });
 
-        name = data['products'].at(0).description.name,
-        description = data['products'].at(0).description.description,
-        url = "/product.png",
+        setProduct({
+          tools: toolData,
+          name: data['products'].at(0).description.name,
+          description: data['products'].at(0).description.description,
+          url: "/product.png",
+        });
+
         // setProduct({
         //   name: data['products'].at(0).description.name,
         //   description: data['products'].at(0).description.description,
         //   url: "/product.png",
         // });
-        setTools(toolData);
+        // setTools(toolData);
       });
   }
 
@@ -59,7 +70,6 @@ export default function ProductDetail() {
 
   useEffect(() => {
     getTools();
-    setProduct({ name: name, description: description, url: url });
   });
 
   return (
@@ -103,7 +113,7 @@ export default function ProductDetail() {
           </div>
         }
         <div className="">
-          <ToolList tools={tools} handleCart={handleCart} />
+          <ToolList tools={product.tools} handleCart={handleCart} />
         </div>
       </div>
     </Layout>

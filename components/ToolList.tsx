@@ -33,7 +33,7 @@ const ToolList = (props: IToolListProps) => {
         showMode == "list" ?
         <div className="pt-5 mb-32 grid gap-8 text-center lg:mb-0 lg:grid-cols-1 lg:text-left">
           {
-            props.tools.map((tool, index) => 
+            props.tools.map((tool) => 
             <>
               <div className="flex justify-between items-center">
                 <Link href={`/product/${tool.productId}/tool/${tool.id}`} className="px-5 py-4">
