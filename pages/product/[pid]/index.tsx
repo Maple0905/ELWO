@@ -17,6 +17,10 @@ interface IProduct {
 
 export default function ProductDetail(props: any) {
 
+  const router = useRouter();
+  const query = router.query;
+  const state = query.productName;
+
   const [cart, setCart] = useState(false);
   const [product, setProduct] = useState<IProduct>({
     tools: [],
@@ -24,8 +28,6 @@ export default function ProductDetail(props: any) {
     description: "",
     url: "",
   });
-  const router = useRouter();
-  const query = router.query;
 
   const getTools = async () => {
     await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${query.pid}&lang=sv`)
@@ -49,7 +51,7 @@ export default function ProductDetail(props: any) {
 
         setProduct({
           tools: toolData,
-          name: query.productName,
+          name: typeof state === 'string' ? state : '',
           description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           url: "/product.png",
         });
