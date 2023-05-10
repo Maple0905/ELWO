@@ -14,11 +14,17 @@ interface IProductProps {
   product: IProduct
 }
 
+export interface IProductName {
+  name: string
+}
+
 const Product = (props: IProductProps) => {
+
+  const productName = props.product.name;
 
   return (
     <div className="col-span-1 border-0 border-gray-300 bg-gray-200">
-      <Link href={`product/${props.product.code}`} className="">
+      <Link href={{ pathname: `/product/${props.product.code}`, query: { state: productName } }} className="">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
             <Image

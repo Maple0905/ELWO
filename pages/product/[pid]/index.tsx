@@ -15,10 +15,9 @@ interface IProduct {
   url: string
 }
 
-export default function ProductDetail() {
+export default function ProductDetail(props: any) {
 
   const [cart, setCart] = useState(false);
-  // const [tools, setTools] = useState<ITool[]>([]);
   const [product, setProduct] = useState<IProduct>({
     tools: [],
     name: "",
@@ -50,8 +49,8 @@ export default function ProductDetail() {
 
         setProduct({
           tools: toolData,
-          name: data['products'].at(0).description.name,
-          description: data['products'].at(0).description.description,
+          name: query.state,
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
           url: "/product.png",
         });
 
