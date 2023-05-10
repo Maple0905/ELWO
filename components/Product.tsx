@@ -24,7 +24,7 @@ const Product = (props: IProductProps) => {
 
   return (
     <div className="col-span-1 border-0 border-gray-300 bg-gray-200">
-      <Link href={{ pathname: `/product/${props.product.code}`, query: { state: productName } }} className="">
+      <Link href={{ pathname: `/product/${props.product.code}`, query: { productName: productName } }} className="">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
             <Image
