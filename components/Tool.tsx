@@ -7,6 +7,7 @@ export interface ITool {
   productId: string
   name: string
   type: string
+  sku: string
   prevPrice: string
   currentPrice: string
   fee: string

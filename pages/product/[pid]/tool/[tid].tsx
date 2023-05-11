@@ -1,20 +1,70 @@
-import { GetServerSideProps } from 'next'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Rating } from '@mui/material'
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import styles from '../../../../public/css/custom.module.css';
+import { useRouter } from 'next/router'
+import axios from 'axios'
 
 export default function ToolDetail() {
 
-  const [ratingValue, setRatingValue] = useState(0);
-  const [ratingHover, setRatingHover] = useState(-1);
-  const [cartCount, setCartCount] = useState(1);
+  const router = useRouter();
+  const query = router.query;
+  const toolId = typeof query.tid === 'string' ? query.tid : '';
+
+  const [ ratingValue, setRatingValue ] = useState(0);
+  const [ ratingHover, setRatingHover ] = useState(-1);
+  const [ cartCount, setCartCount ] = useState(1);
+  const [ tool, setTool ] = useState({
+    id: "",
+    name: "",
+    type1: "",
+    type2: "",
+    description: "",
+    prevPrice: "",
+    currentPrice: "",
+    fee: "",
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const getToolData = async () => {
+      try {
+        await axios.get(`${process.env.API_URL}/products/${toolId}`)
+          .then((res) => {
+            const data = res.data;
+
+            if (isMounted) {
+              setTool({
+                id: toolId,
+                name: data.description.name,
+                description: data.description.description,
+                type1: "TELCO S2",
+                type2: "ART NR " + data.sku,
+                prevPrice: "2.545",
+                currentPrice: "1.795",
+                fee: "15"
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getToolData();
+
+    return () => {
+      isMounted = false;
+    }
+  }, []);
 
   return (
     <Layout>
@@ -41,14 +91,14 @@ export default function ToolDetail() {
           <div className="col-span-1 px-5 flex flex-col justify-between">
             <div className="">
               <div>
-                <p className="text-xl font-semibold">{tool.description1}</p>
-                <p className="text-xl">{tool.description2}</p>
+                <p className="text-xl font-semibold">{tool.type1}</p>
+                <p className="text-xl">{tool.type2}</p>
               </div>
               <div className="py-5">
                 <p className="text-5xl font-bold mb-1">{tool.name}</p>
               </div>
               <div className="pb-8">
-                <p className="text-xl">{tool.description3}</p>
+                <p className="text-xl">{tool.description}</p>
               </div>
             </div>
             <div className="">
@@ -123,25 +173,4 @@ export default function ToolDetail() {
       </div>
     </Layout>
   )
-}
-
-export const tool = {
-  id: "",
-  productId: "1",
-  name: "Bosch GSR 12V",
-  description1: "TELCO S2",
-  description2: "ART NR 207-1567",
-  description3: "Bosch Professional - Machines and accessories such as batteries and chargers from Bosch Professional are only compatible with other products in the same series, i.e. the blue Bosch Professional series. This means that you cannot use blue Bosch products together with products from the green Bosch DIY series. Bosch 12V Li-ion 3.0Ah stick battery. Fits Bosch 10.8V and 12V cordless tools.",
-  prevPrice: "2.545",
-  currentPrice: "1.795",
-  fee: "15",
-  url: "/tool.png"
-}
-
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return {
-    props: {
-      tool,
-    },
-  }
 }
