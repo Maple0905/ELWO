@@ -16,6 +16,7 @@ export default function ToolDetail() {
   const router = useRouter();
   const query = router.query;
   const toolId = typeof query.tid === 'string' ? query.tid : '';
+  const productId = typeof query.productId === 'string' ? query.productId : '';
 
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
@@ -69,7 +70,7 @@ export default function ToolDetail() {
   return (
     <Layout>
       <div className="max-w-7xl w-full">
-        <Link href={`/product/060137B202`}>
+        <Link href={`/product/${productId}`}>
           <div className="flex items-center mb-5">
             <Image src="/prev.png" alt="Prev Icon" width={20} height={20} />
             <p className="ml-2">Back</p>

@@ -43,7 +43,7 @@ export default function ProductDetail(props: any) {
         await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${productCode}&lang=sv`)
           .then((res) => {
             const data = res.data;
-    
+
             let toolData: ITool[] = [];
             data['products'].map((item: any) => {
               const tool: ITool = {
@@ -55,26 +55,40 @@ export default function ProductDetail(props: any) {
                 prevPrice: "2.545",
                 currentPrice: "1.745",
                 fee: "15",
-                url: "/tool.png"
+                url: item.image.imageUrl
               };
               toolData.push(tool);
             });
 
-            if (isMounted) {
-              setProduct({
-                tools: toolData,
-                name: productName,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                url: "/product.png",
-              });
+            const getProduct = async () => {
+              try {
+                await axios.get(`${process.env.API_URL}/products/${productId}`)
+                  .then((res) => {
+                    const data = res.data;
+
+                    setProduct({
+                      tools: toolData,
+                      name: productName,
+                      description: data.description.description,
+                      url: data.image.imageUrl,
+                    });
+                  })
+              } catch (err) {
+                console.log(err);
+              }
             }
+
+            if (isMounted) {
+              getProduct();
+            }
+
           })
           .catch((err) => console.log(err));
       } catch (err) {
         console.log(err);
       }
     }
-    
+
     getTools();
 
     return () => {

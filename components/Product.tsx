@@ -14,10 +14,6 @@ interface IProductProps {
   product: IProduct
 }
 
-export interface IProductName {
-  name: string
-}
-
 const Product = (props: IProductProps) => {
 
   const productName = props.product.name;

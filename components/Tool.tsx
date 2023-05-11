@@ -32,7 +32,7 @@ const Tool = (props: IToolProps) => {
           Wish
         </div>
       </div>
-      <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
+      <Link href={{ pathname: `/product/${props.tool.productId}/tool/${props.tool.id}`, query: { productId: props.tool.productId }}} className="py-5">
         <div className="my-3 px-5">
           <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
           <Image
@@ -45,7 +45,7 @@ const Tool = (props: IToolProps) => {
         </div>
         <div className="py-3 text-center">
           <p className="text-xl font-black">{props.tool.name}</p>
-          <p className="text-lg">{props.tool.type}</p>
+          <p className="text-lg py-2">{props.tool.type}</p>
           <div className="mx-auto">
             <div className="flex items-center justify-center pb-3">
               <div className="flex justify-center items-center">
