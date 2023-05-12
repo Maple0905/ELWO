@@ -11,13 +11,14 @@ export default function Tools() {
 
   const [searchTools, setSearchTools] = useState<ITool[]>([]);
   const router = useRouter();
+  const searchName = typeof router.query.name === 'string' ? router.query.name : '';
 
   useEffect(() => {
     let isMounted = true;
 
     const getTools = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/fitment/model/name?search=${router.query.name}`)
+        await axios.get(`${process.env.API_URL}/fitment/model/name?search=${searchName}`)
           .then(async (res) => {
             const data = res.data;
 
@@ -64,7 +65,7 @@ export default function Tools() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [searchName]);
 
   return (
     <Layout>
