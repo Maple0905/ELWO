@@ -34,7 +34,7 @@ const Tool = (props: IToolProps) => {
       </div>
       <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
         <div className="my-3 px-5">
-          <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
+          <h1 className="text-red-600 text-xl font-black text-left">BOSCH</h1>
           <Image
             className="mx-auto"
             src={props.tool.url}
@@ -44,7 +44,7 @@ const Tool = (props: IToolProps) => {
           />
         </div>
         <div className="py-3 text-center">
-          <p className="text-xl font-black">{props.tool.name}</p>
+          <p className="text-xl font-black px-3">{props.tool.name}</p>
           <p className="text-lg py-2">{props.tool.type}</p>
           <div className="mx-auto">
             <div className="flex items-center justify-center pb-3">

@@ -44,9 +44,6 @@ export default function ProductDetail() {
             const productDescription = res.data.description.description;
             const productUrl = res.data.image.imageUrl;
 
-            console.log(productUrl);
-            debugger;
-
             await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${productCode}&lang=sv`)
               .then((res) => {
                 const data = res.data;

@@ -16,9 +16,6 @@ export default function ToolDetail() {
   const router = useRouter();
   const { pid, tid } = router.query;
 
-  console.log("Product Id : ", {pid});
-  console.log("Tool Id : ", {tid});
-
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
   const [ cartCount, setCartCount ] = useState(1);
