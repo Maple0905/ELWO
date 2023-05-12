@@ -8,6 +8,7 @@ export interface IProduct {
   description: string
   productId: string
   code: string
+  url: string
 }
 
 interface IProductProps {
@@ -21,11 +22,12 @@ const Product = (props: IProductProps) => {
 
   return (
     <div className="col-span-1 border-0 border-gray-300 bg-gray-200">
-      <Link href={{ pathname: `/product/${props.product.productId}`, query: { productName: productName, productCode: productCode } }} className="">
+      <Link href={`/product/${props.product.productId}`} className="">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
             <Image
               className="mx-auto"
+              // src={props.product.url}
               src="/product.png"
               alt="Next.js Logo"
               width={200}

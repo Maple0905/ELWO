@@ -15,13 +15,10 @@ interface IProduct {
   url: string
 }
 
-export default function ProductDetail(props: any) {
+export default function ProductDetail() {
 
   const router = useRouter();
-  const query = router.query;
-  const productId = typeof query.pid === 'string' ? query.pid : '';
-  const productName = typeof query.productName === 'string' ? query.productName : '';
-  const productCode = typeof query.productCode === 'string' ? query.productCode : '';
+  const productId = typeof router.query.pid === 'string' ? router.query.pid : '';
 
   const [cart, setCart] = useState(false);
   const [product, setProduct] = useState<IProduct>({
@@ -38,63 +35,59 @@ export default function ProductDetail(props: any) {
   useEffect(() => {
     let isMounted = true;
 
-    const getTools = async () => {
+    const getProductDetail = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${productCode}&lang=sv`)
-          .then((res) => {
-            const data = res.data;
+        await axios.get(`${process.env.API_URL}/products/${productId}`)
+          .then(async (res) => {
+            const productCode = res.data.sku;
+            const productName = res.data.description.name;
+            const productDescription = res.data.description.description;
+            const productUrl = res.data.image.imageUrl;
 
-            let toolData: ITool[] = [];
-            data['products'].map((item: any) => {
-              const tool: ITool = {
-                id: item.id,
-                productId: productId,
-                name: item.description.name,
-                type: item.type.description.name,
-                sku: item.sku,
-                prevPrice: "2.545",
-                currentPrice: "1.745",
-                fee: "15",
-                url: item.image.imageUrl
-              };
-              toolData.push(tool);
-            });
+            console.log(productUrl);
+            debugger;
 
-            const getProduct = async () => {
-              try {
-                await axios.get(`${process.env.API_URL}/products/${productId}`)
-                  .then((res) => {
-                    const data = res.data;
+            await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${productCode}&lang=sv`)
+              .then((res) => {
+                const data = res.data;
+    
+                let toolData: ITool[] = [];
+                data['products'].map((item: any) => {
+                  const tool: ITool = {
+                    id: item.id,
+                    productId: productId,
+                    name: item.description.name,
+                    type: item.type.description.name,
+                    sku: item.sku,
+                    prevPrice: "2.545",
+                    currentPrice: "1.745",
+                    fee: "15",
+                    url: item.image.imageUrl
+                  };
+                  toolData.push(tool);
+                });
 
-                    setProduct({
-                      tools: toolData,
-                      name: productName,
-                      description: data.description.description,
-                      url: data.image.imageUrl,
-                    });
-                  })
-              } catch (err) {
-                console.log(err);
-              }
-            }
-
-            if (isMounted) {
-              getProduct();
-            }
-
+                if (isMounted) {
+                  setProduct({
+                    tools: toolData,
+                    name: productName,
+                    description: productDescription,
+                    url: productUrl
+                  });
+                }
+              })
+              .catch((err) => console.log(err));
           })
-          .catch((err) => console.log(err));
       } catch (err) {
         console.log(err);
       }
     }
 
-    getTools();
+    getProductDetail();
 
     return () => {
       isMounted = false;
     }
-
   }, []);
 
   return (

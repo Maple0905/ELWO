@@ -14,9 +14,10 @@ import axios from 'axios'
 export default function ToolDetail() {
 
   const router = useRouter();
-  const query = router.query;
-  const toolId = typeof query.tid === 'string' ? query.tid : '';
-  const productId = typeof query.productId === 'string' ? query.productId : '';
+  const { pid, tid } = router.query;
+
+  console.log("Product Id : ", {pid});
+  console.log("Tool Id : ", {tid});
 
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
@@ -37,13 +38,13 @@ export default function ToolDetail() {
 
     const getToolData = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/products/${toolId}`)
+        await axios.get(`${process.env.API_URL}/products/${tid}`)
           .then((res) => {
             const data = res.data;
 
             if (isMounted) {
               setTool({
-                id: toolId,
+                id: typeof tid === 'string' ? tid : '',
                 name: data.description.name,
                 description: data.description.description,
                 type1: "TELCO S2",
@@ -70,7 +71,7 @@ export default function ToolDetail() {
   return (
     <Layout>
       <div className="max-w-7xl w-full">
-        <Link href={`/product/${productId}`}>
+        <Link href={`/product/${pid}`}>
           <div className="flex items-center mb-5">
             <Image src="/prev.png" alt="Prev Icon" width={20} height={20} />
             <p className="ml-2">Back</p>

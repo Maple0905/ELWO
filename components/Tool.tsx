@@ -32,7 +32,7 @@ const Tool = (props: IToolProps) => {
           Wish
         </div>
       </div>
-      <Link href={{ pathname: `/product/${props.tool.productId}/tool/${props.tool.id}`, query: { productId: props.tool.productId }}} className="py-5">
+      <Link href={`/product/${props.tool.productId}/tool/${props.tool.id}`} className="py-5">
         <div className="my-3 px-5">
           <h1 className="text-red-600 text-xl font-black">BOSCH</h1>
           <Image
