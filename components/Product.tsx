@@ -23,7 +23,7 @@ const Product = (props: IProductProps) => {
       <Link href={`/product/${props.product.productId}`} className="flex flex-col">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
-            <div className={styles.productImg}>
+            <div className={`${styles.productImg} bg-white flex justify-content-center items-center`}>
               <Image
                 className="mx-auto"
                 src={props.product.url}
