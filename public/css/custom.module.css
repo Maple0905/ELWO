@@ -1,8 +1,8 @@
-.toolDetail {
+.accessoryDetail {
   position: relative;
 }
 
-.toolDetail:before {
+.accessoryDetail:before {
   position: absolute;
   content: "";
   left: 0;
@@ -17,26 +17,26 @@
   transform: rotate(25deg);
 }
 
-.toolDetailFee1 {
+.accessoryDetailFee1 {
   left: -2px;
   top: -2px;
 }
 
-.toolDetailFee2 {
+.accessoryDetailFee2 {
   left: -2px;
   top: -3px;
 }
 
-.toolDetailFee3 {
+.accessoryDetailFee3 {
   left: -1px;
   top: -26px;
 }
 
-.toolList {
+.accessoryList {
   position: relative;
 }
 
-.toolList:before {
+.accessoryList:before {
   position: absolute;
   content: "";
   left: 0;
@@ -51,12 +51,12 @@
   transform: rotate(25deg);
 }
 
-.toolListFee1 {
+.accessoryListFee1 {
   left: 1px;
   top: -16px;
 }
 
-.toolListFee2 {
+.accessoryListFee2 {
   left: 0px;
   top: -4px;
 }
@@ -72,7 +72,7 @@
   right: 0;
 }
 
-.toolColor {
+.accessoryColor {
   position: absolute;
   content: "";
   bottom: 0;
@@ -83,7 +83,7 @@
   margin-left: 1.5rem;
 }
 
-.productImg {
+.toolImg {
   width: 100%;
   height: 200px;
 }

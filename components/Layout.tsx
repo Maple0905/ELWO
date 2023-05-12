@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Layout({ children  }: PropsWithChildren<any>) {
   return (
     <>
-      {/* <Header /> */}
       <Head>
         <title>ELWO</title>
       </Head>
@@ -18,7 +17,6 @@ export default function Layout({ children  }: PropsWithChildren<any>) {
       >
         {children}
       </main>
-      {/* <Footer /> */}
     </>
   )
 }

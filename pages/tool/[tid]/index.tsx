@@ -1,28 +1,27 @@
 import { useState, useEffect } from 'react';
-import { ITool } from '@/components/Tool'
-import { GetServerSideProps } from 'next'
-import ToolList from '@/components/ToolList'
-import Layout from '@/components/Layout'
-import Image from 'next/image'
-import Link from 'next/link'
+import { IAccessory } from '@/components/Accessory';
+import AccessoryList from '@/components/AccessoryList';
+import Layout from '@/components/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-interface IProduct {
-  tools: ITool[],
+interface ITool {
+  accessoryList: IAccessory[],
   name: string,
   description: string,
   url: string
 }
 
-export default function ProductDetail() {
+export default function ToolDetail() {
 
   const router = useRouter();
-  const productId = typeof router.query.pid === 'string' ? router.query.pid : '';
+  const toolId = typeof router.query.tid === 'string' ? router.query.tid : '';
 
   const [cart, setCart] = useState(false);
-  const [product, setProduct] = useState<IProduct>({
-    tools: [],
+  const [tool, setTool] = useState<ITool>({
+    accessoryList: [],
     name: "",
     description: "",
     url: "",
@@ -35,24 +34,24 @@ export default function ProductDetail() {
   useEffect(() => {
     let isMounted = true;
 
-    const getProductDetail = async () => {
+    const getToolDetail = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/products/${productId}`)
+        await axios.get(`${process.env.API_URL}/products/${toolId}`)
           .then(async (res) => {
-            const productCode = res.data.sku;
-            const productName = res.data.description.name;
-            const productDescription = res.data.description.description;
-            const productUrl = res.data.image.imageUrl;
+            const toolCode = res.data.sku;
+            const toolName = res.data.description.name;
+            const toolDescription = res.data.description.description;
+            const toolUrl = res.data.image.imageUrl;
 
-            await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${productCode}&lang=sv`)
+            await axios.get(`${process.env.API_URL}/products?page=0&count=20&fitment=${toolCode}&lang=sv`)
               .then((res) => {
                 const data = res.data;
     
-                let toolData: ITool[] = [];
+                let accessoryData: IAccessory[] = [];
                 data['products'].map((item: any) => {
-                  const tool: ITool = {
+                  const accessory: IAccessory = {
                     id: item.id,
-                    productId: productId,
+                    toolId: toolId,
                     name: item.description.name,
                     type: item.type.description.name,
                     sku: item.sku,
@@ -61,15 +60,15 @@ export default function ProductDetail() {
                     fee: "15",
                     url: item.image.imageUrl
                   };
-                  toolData.push(tool);
+                  accessoryData.push(accessory);
                 });
 
                 if (isMounted) {
-                  setProduct({
-                    tools: toolData,
-                    name: productName,
-                    description: productDescription,
-                    url: productUrl
+                  setTool({
+                    accessoryList: accessoryData,
+                    name: toolName,
+                    description: toolDescription,
+                    url: toolUrl
                   });
                 }
               })
@@ -80,12 +79,13 @@ export default function ProductDetail() {
       }
     }
 
-    getProductDetail();
+    getToolDetail();
 
     return () => {
       isMounted = false;
     }
-  }, []);
+
+  }, [toolId]);
 
   return (
     <Layout>
@@ -112,14 +112,14 @@ export default function ProductDetail() {
               <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
                 <div className="grid grid-cols-2">
                   <div className="col-start-2 col-span-1">
-                    <Image className="mx-auto my-auto" src={product.url} alt="Tool Logo" width={400} height={400} />
+                    <Image className="mx-auto my-auto" src={tool.url} alt="Tool Logo" width={400} height={400} />
                   </div>
                 </div>
               </div>
               <div className="col-span-1 pt-5 sm:pt-0 px-5 mx-auto my-auto">
                 <p className="opacity-75 text-lg mb-2">My selected tool</p>
-                <p className="text-3xl font-bold mb-1">{product.name}</p>
-                <p className="text-xl">{product.description}</p>
+                <p className="text-3xl font-bold mb-1">{tool.name}</p>
+                <p className="text-xl">{tool.description}</p>
               </div>
             </div>
             <div className="py-8">
@@ -128,7 +128,7 @@ export default function ProductDetail() {
           </div>
         }
         <div className="">
-          <ToolList tools={product.tools} handleCart={handleCart} />
+          <AccessoryList accessoryList={tool.accessoryList} handleCart={handleCart} />
         </div>
       </div>
     </Layout>

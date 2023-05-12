@@ -1,25 +1,25 @@
-import Layout from '@/components/Layout'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Rating } from '@mui/material'
+import Layout from '@/components/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Rating } from '@mui/material';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import styles from '../../../../public/css/custom.module.css';
-import { useRouter } from 'next/router'
-import axios from 'axios'
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
-export default function ToolDetail() {
+export default function AccessoryDetail() {
 
   const router = useRouter();
-  const { pid, tid } = router.query;
+  const { tid, aid } = router.query;
 
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
   const [ cartCount, setCartCount ] = useState(1);
-  const [ tool, setTool ] = useState({
+  const [ accessory, setAccessory ] = useState({
     id: "",
     name: "",
     type1: "",
@@ -33,14 +33,14 @@ export default function ToolDetail() {
   useEffect(() => {
     let isMounted = true;
 
-    const getToolData = async () => {
+    const getAccessoryData = async () => {
       try {
         await axios.get(`${process.env.API_URL}/products/${tid}`)
           .then((res) => {
             const data = res.data;
 
             if (isMounted) {
-              setTool({
+              setAccessory({
                 id: typeof tid === 'string' ? tid : '',
                 name: data.description.name,
                 description: data.description.description,
@@ -58,17 +58,17 @@ export default function ToolDetail() {
       }
     }
 
-    getToolData();
+    getAccessoryData();
 
     return () => {
       isMounted = false;
     }
-  }, []);
+  }, [tid]);
 
   return (
     <Layout>
       <div className="max-w-7xl w-full">
-        <Link href={`/product/${pid}`}>
+        <Link href={`/tool/${tid}`}>
           <div className="flex items-center mb-5">
             <Image src="/prev.png" alt="Prev Icon" width={20} height={20} />
             <p className="ml-2">Back</p>
@@ -90,32 +90,32 @@ export default function ToolDetail() {
           <div className="col-span-1 px-5 flex flex-col justify-between">
             <div className="">
               <div>
-                <p className="text-xl font-semibold">{tool.type1}</p>
-                <p className="text-xl">{tool.type2}</p>
+                <p className="text-xl font-semibold">{accessory.type1}</p>
+                <p className="text-xl">{accessory.type2}</p>
               </div>
               <div className="py-5">
-                <p className="text-5xl font-bold mb-1">{tool.name}</p>
+                <p className="text-5xl font-bold mb-1">{accessory.name}</p>
               </div>
               <div className="pb-8">
-                <p className="text-xl">{tool.description}</p>
+                <p className="text-xl">{accessory.description}</p>
               </div>
             </div>
             <div className="">
               <div className="flex pb-3 w-full">
                 <div className="flex justify-content-center items-center">
-                  <span className="text-4xl font-black z-20"><span className={styles.toolDetail}>{tool.prevPrice + ':-'}</span></span>
+                  <span className="text-4xl font-black z-20"><span className={styles.accessoryDetail}>{accessory.prevPrice + ':-'}</span></span>
                   {/* <div className="relative">
-                    <div className={`absolute text-5xl ${styles.toolDetailFee3}`}>{'-'}</div>
+                    <div className={`absolute text-5xl ${styles.accessoryDetailFee3}`}>{'-'}</div>
                   </div> */}
-                  <span className="ml-1 text-red-600 text-5xl font-black">{tool.currentPrice + ':-'}</span>
+                  <span className="ml-1 text-red-600 text-5xl font-black">{accessory.currentPrice + ':-'}</span>
                 </div>
                 {/* <div className="relative">
-                  <div className={`absolute text-red-600 text-5xl ${styles.toolDetailFee1}`}>{'-'}</div>
+                  <div className={`absolute text-red-600 text-5xl ${styles.accessoryDetailFee1}`}>{'-'}</div>
                 </div> */}
                 <div className="relative">
-                  <div className={`absolute text-white font-black text-5xl ${styles.toolDetailFee2}`}>{'-'}</div>
+                  <div className={`absolute text-white font-black text-5xl ${styles.accessoryDetailFee2}`}>{'-'}</div>
                   <div className="ml-2 bg-red-600 text-white text-4xl font-black rounded">
-                    <div className="ml-3 mr-1 py-1">{tool.fee + '%'}</div>
+                    <div className="ml-3 mr-1 py-1">{accessory.fee + '%'}</div>
                   </div>
                 </div>
               </div>
@@ -150,7 +150,6 @@ export default function ToolDetail() {
                   <div className="grid justify-items-center">
                     <div className="flex w-full">
                       <input type="number" className="w-20 p-2.5 z-20 text-lg text-gray-900 border-4 border-green-700" min={1} value={cartCount} onChange={(e) => setCartCount(parseInt(e.target.value))} />
-                      {/* <Link href={`/cart`} className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800"> */}
                       <div className="top-0 right-0 left-20 p-2.5 w-full flex items-center text-lg font-medium text-white bg-green-700 border border-green-700 hover:bg-green-800">
                         <svg className="mx-auto my-auto flex items-center" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
                           <g transform="translate(0 0)">
