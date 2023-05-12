@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import styles from "../public/css/custom.module.css";
 
 export interface IProduct {
   id: string
@@ -17,21 +18,22 @@ interface IProductProps {
 
 const Product = (props: IProductProps) => {
 
-  const productName = props.product.name;
-  const productCode = props.product.code;
-
   return (
     <div className="col-span-1 border-0 border-gray-300 bg-gray-200">
       <Link href={`/product/${props.product.productId}`} className="flex flex-col">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
-            <Image
-              className="mx-auto"
-              src={props.product.url}
-              alt="Next.js Logo"
-              width={200}
-              height={150}
-            />
+            <div className={styles.productImg}>
+              <Image
+                className="mx-auto"
+                src={props.product.url}
+                alt="Next.js Logo"
+                layout="responsive"
+                width={200}
+                height={200}
+                objectFit="cover"
+              />
+            </div>
           </div>
         </div>
         <div className="text-center">
