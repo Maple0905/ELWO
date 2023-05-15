@@ -52,8 +52,6 @@ export default function AccessoryDetail() {
           .then((res) => {
             const data = res.data;
 
-            debugger;
-
             let imgData: string[] = [];
             data['images'].map((item: any) => {
               const url = item.imageUrl;

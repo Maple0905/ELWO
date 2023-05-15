@@ -49,14 +49,14 @@ const Accessory = (props: IAccessoryProps) => {
           <div className="mx-auto">
             <div className="flex items-center justify-center pb-3">
               <div className="flex justify-center items-center">
-                <span className="text-md font-black z-20"><span className={styles.AccessoryList}>{props.accessory.prevPrice + ':-'}</span></span>
+                <span className="text-md font-black z-20"><span className={styles.accessoryList}>{props.accessory.prevPrice + ':-'}</span></span>
                 <span className="ml-2 text-red-600 text-xl font-black">{props.accessory.currentPrice + ':-'}</span>
               </div>
               {/* <div className="relative">
-                <div className={`absolute text-red-600 text-xl ${styles.AccessoryListFee1}`}>{'-'}</div>
+                <div className={`absolute text-red-600 text-xl ${styles.accessoryListFee1}`}>{'-'}</div>
               </div> */}
               <div className="relative flex justify-center items-center">
-                <div className={`absolute text-white text-xl font-black ${styles.AccessoryListFee2}`}>{'-'}</div>
+                <div className={`absolute text-white text-xl font-black ${styles.accessoryListFee2}`}>{'-'}</div>
                 <div className="ml-1 bg-red-600 text-white text-md font-black rounded-sm">
                   <p className="ml-2 mr-1">{props.accessory.fee + '%'}</p>
                 </div>
