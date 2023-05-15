@@ -101,7 +101,8 @@ export default function AccessoryDetail() {
                 {
                   accessory.imgs.map((item, index) => 
                     <div key={index}>
-                      <img src={item} />
+                      {/* <img src={item} /> */}
+                      <Image src={item} alt="Accessory Image" width={400} height={400} />
                     </div>
                   )
                 }
