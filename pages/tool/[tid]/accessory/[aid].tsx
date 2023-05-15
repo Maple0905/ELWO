@@ -11,6 +11,18 @@ import styles from '../../../../public/css/custom.module.css';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 
+interface IAccesorryDetail {
+  id: string,
+  name: string,
+  type1: string,
+  type2: string,
+  description: string,
+  prevPrice: string,
+  currentPrice: string,
+  fee: string,
+  imgs: string[]
+}
+
 export default function AccessoryDetail() {
 
   const router = useRouter();
@@ -19,7 +31,7 @@ export default function AccessoryDetail() {
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
   const [ cartCount, setCartCount ] = useState(1);
-  const [ accessory, setAccessory ] = useState({
+  const [ accessory, setAccessory ] = useState<IAccesorryDetail>({
     id: "",
     name: "",
     type1: "",
@@ -28,6 +40,7 @@ export default function AccessoryDetail() {
     prevPrice: "",
     currentPrice: "",
     fee: "",
+    imgs: [],
   });
 
   useEffect(() => {
@@ -39,6 +52,14 @@ export default function AccessoryDetail() {
           .then((res) => {
             const data = res.data;
 
+            debugger;
+
+            let imgData: string[] = [];
+            data['images'].map((item: any) => {
+              const url = item.imageUrl;
+              imgData.push(url);
+            });
+
             if (isMounted) {
               setAccessory({
                 id: typeof tid === 'string' ? tid : '',
@@ -48,7 +69,8 @@ export default function AccessoryDetail() {
                 type2: "ART NR " + data.sku,
                 prevPrice: "2.545",
                 currentPrice: "1.795",
-                fee: "15"
+                fee: "15",
+                imgs: imgData
               });
             }
           })
@@ -63,7 +85,7 @@ export default function AccessoryDetail() {
     return () => {
       isMounted = false;
     }
-  }, [tid]);
+  }, [tid, aid]);
 
   return (
     <Layout>
@@ -78,12 +100,13 @@ export default function AccessoryDetail() {
           <div className="col-span-1 px-5 bg-[url('/elwotools-green.png')] bg-no-repeat bg-center bg-contain">
             <div>
               <Carousel showThumbs={true} thumbWidth={100}>
-                <div>
-                  <img src="/product.png" />
-                </div>
-                <div>
-                  <img src="/tool.png" />
-                </div>
+                {
+                  accessory.imgs.map((item, index) => 
+                    <div key={index}>
+                      <img src={item} />
+                    </div>
+                  )
+                }
               </Carousel>
             </div>
           </div>
