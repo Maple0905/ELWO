@@ -53,10 +53,11 @@ export default function AccessoryDetail() {
             const data = res.data;
 
             let imgData: string[] = [];
-            data['images'].map((item: any) => {
-              const url = item.imageUrl;
-              imgData.push(url);
-            });
+            imgData.push(data['image'].imageUrl);
+            // data['images'].map((item: any) => {
+            //   const url = item.imageUrl;
+            //   imgData.push(url);
+            // });
 
             if (isMounted) {
               setAccessory({
@@ -101,10 +102,10 @@ export default function AccessoryDetail() {
                 {
                   accessory.imgs.map((item, index) => 
                     <div key={index}>
-                      {/* <img src={item} /> */}
-                      <div className="carousel=image-wrapper">
+                      <img src={item} />
+                      {/* <div className="carousel=image-wrapper">
                         <Image src={item} alt="Accessory Image" layout="fill" objectFit="cover" />
-                      </div>
+                      </div> */}
                     </div>
                   )
                 }
