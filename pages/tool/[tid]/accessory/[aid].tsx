@@ -35,7 +35,7 @@ export default function AccessoryDetail() {
 
     const getAccessoryData = async () => {
       try {
-        await axios.get(`${process.env.API_URL}/products/${tid}`)
+        await axios.get(`${process.env.API_URL}/products/${aid}`)
           .then((res) => {
             const data = res.data;
 
