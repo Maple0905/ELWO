@@ -1,7 +1,8 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -16,6 +17,26 @@ interface rowData {
   stamina: string;
   avg: string;
 }
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 
 export default function Calc() {
   const ronaldoTempData: rowData = { name: 'Ronaldo', dribble: '0', speed: '0', power: '0', stamina: '0', avg: '0' };
@@ -145,6 +166,7 @@ export default function Calc() {
   return (
     <Layout>
       <div className="max-w-5xl w-full">
+        <h1 className="mb-10 text-5xl font-bold text-center">Player Ratings</h1>
         <h1 className="mb-5 text-xl">
           Please enter Dribble, Speed, Power, Stamina per players.
           You will get their average rating score.
@@ -153,130 +175,110 @@ export default function Calc() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell align="right">Dribble</TableCell>
-                <TableCell align="right">Speed</TableCell>
-                <TableCell align="right">Power</TableCell>
-                <TableCell align="right">Stamina</TableCell>
-                <TableCell align="right">Average</TableCell>
+                <StyledTableCell className="font-bold text-lg">Name</StyledTableCell>
+                <StyledTableCell className="font-bold text-lg" align="right">Dribble</StyledTableCell>
+                <StyledTableCell className="font-bold text-lg" align="right">Speed</StyledTableCell>
+                <StyledTableCell className="font-bold text-lg" align="right">Power</StyledTableCell>
+                <StyledTableCell className="font-bold text-lg" align="right">Stamina</StyledTableCell>
+                <StyledTableCell className="font-bold text-lg" align="right">Average</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow
+              <StyledTableRow
                 key={ronaldoData.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row">
                   {ronaldoData.name}
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="dribble" value={ronaldoData.dribble} onChange={handleRonaldoChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="speed" value={ronaldoData.speed} onChange={handleRonaldoChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="power" value={ronaldoData.power} onChange={handleRonaldoChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="stamina" value={ronaldoData.stamina} onChange={handleRonaldoChange}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="avg" value={ronaldoData.avg} disabled onChange={handleRonaldoChange}></input>
-                </TableCell>
-              </TableRow>
-              <TableRow
+                </StyledTableCell>
+                <StyledTableCell align="right">{ronaldoData.avg}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow
                 key={messiData.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row">
                   {messiData.name}
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="dribble" value={messiData.dribble} onChange={handleMessiChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="speed" value={messiData.speed} onChange={handleMessiChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="power" value={messiData.power} onChange={handleMessiChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="stamina" value={messiData.stamina} onChange={handleMessiChange}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="avg" value={messiData.avg} disabled onChange={handleMessiChange}></input>
-                </TableCell>
-              </TableRow>
-              <TableRow
+                </StyledTableCell>
+                <StyledTableCell align="right">{messiData.avg}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow
                 key={benzemaData.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row">
                   {benzemaData.name}
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="dribble" value={benzemaData.dribble} onChange={handleBenzemaChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="speed" value={benzemaData.speed} onChange={handleBenzemaChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="power" value={benzemaData.power} onChange={handleBenzemaChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="stamina" value={benzemaData.stamina} onChange={handleBenzemaChange}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="avg" value={benzemaData.avg} disabled onChange={handleBenzemaChange}></input>
-                </TableCell>
-              </TableRow>
-              <TableRow
+                </StyledTableCell>
+                <StyledTableCell align="right">{benzemaData.avg}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow
                 key={baleData.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <StyledTableCell component="th" scope="row">
                   {baleData.name}
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="dribble" value={baleData.dribble} onChange={handleBaleChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="speed" value={baleData.speed} onChange={handleBaleChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="power" value={baleData.power} onChange={handleBaleChange}></input>
-                </TableCell>
-                <TableCell align="right">
+                </StyledTableCell>
+                <StyledTableCell align="right">
                   <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="stamina" value={baleData.stamina} onChange={handleBaleChange}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" defaultValue={0} placeholder="0" name="avg" value={baleData.avg} disabled onChange={handleBaleChange}></input>
-                </TableCell>
-              </TableRow>
-              <TableRow
+                </StyledTableCell>
+                <StyledTableCell align="right">{baleData.avg}</StyledTableCell>
+              </StyledTableRow>
+              <StyledTableRow
                 key={avgData.name}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
-                  {avgData.name}
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" disabled defaultValue={0} placeholder="0" value={(parseInt(ronaldoData.dribble) + parseInt(messiData.dribble) + parseInt(benzemaData.dribble) + parseInt(baleData.dribble)) / 4}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" disabled defaultValue={0} placeholder="0" value={(parseInt(ronaldoData.speed) + parseInt(messiData.speed) + parseInt(benzemaData.speed) + parseInt(baleData.speed)) / 4}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" disabled defaultValue={0} placeholder="0" value={(parseInt(ronaldoData.power) + parseInt(messiData.power) + parseInt(benzemaData.power) + parseInt(baleData.power)) / 4}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" disabled defaultValue={0} placeholder="0" value={(parseInt(ronaldoData.stamina) + parseInt(messiData.stamina) + parseInt(benzemaData.stamina) + parseInt(baleData.stamina)) / 4}></input>
-                </TableCell>
-                <TableCell align="right">
-                  <input className="border h-full p-2 w-20 text-right" disabled defaultValue={0} placeholder="0" value={(parseInt(ronaldoData.avg) + parseInt(messiData.avg) + parseInt(benzemaData.avg) + parseInt(baleData.avg)) / 4}></input>
-                </TableCell>
-              </TableRow>
+                <StyledTableCell component="th" scope="row" className="font-bold">{avgData.name}</StyledTableCell>
+                <StyledTableCell align="right" className="font-bold">{(parseInt(ronaldoData.dribble) + parseInt(messiData.dribble) + parseInt(benzemaData.dribble) + parseInt(baleData.dribble)) / 4}</StyledTableCell>
+                <StyledTableCell align="right" className="font-bold">{(parseInt(ronaldoData.speed) + parseInt(messiData.speed) + parseInt(benzemaData.speed) + parseInt(baleData.speed)) / 4}</StyledTableCell>
+                <StyledTableCell align="right" className="font-bold">{(parseInt(ronaldoData.power) + parseInt(messiData.power) + parseInt(benzemaData.power) + parseInt(baleData.power)) / 4}</StyledTableCell>
+                <StyledTableCell align="right" className="font-bold">{(parseInt(ronaldoData.stamina) + parseInt(messiData.stamina) + parseInt(benzemaData.stamina) + parseInt(baleData.stamina)) / 4}</StyledTableCell>
+                <StyledTableCell align="right" className="font-bold">{(parseInt(ronaldoData.avg) + parseInt(messiData.avg) + parseInt(benzemaData.avg) + parseInt(baleData.avg)) / 4}</StyledTableCell>
+              </StyledTableRow>
             </TableBody>
           </Table>
         </TableContainer>
