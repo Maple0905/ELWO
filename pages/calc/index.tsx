@@ -145,7 +145,11 @@ export default function Calc() {
   return (
     <Layout>
       <div className="max-w-5xl w-full">
-        <TableContainer component={Paper}>
+        <h1 className="mb-5 text-xl">
+          Please enter Dribble, Speed, Power, Stamina per players.
+          You will get their average rating score.
+        </h1>
+        <TableContainer component={Paper} className="border">
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
