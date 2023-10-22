@@ -10,18 +10,8 @@ import { Carousel } from 'react-responsive-carousel';
 import styles from '../../../../public/css/custom.module.css';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-
-interface IAccesorryDetail {
-  id: string,
-  name: string,
-  type1: string,
-  type2: string,
-  description: string,
-  prevPrice: string,
-  currentPrice: string,
-  fee: string,
-  imgs: string[]
-}
+import getImageUrl from "@/utils/getImageUrl";
+import { IAccessory } from '@/typedefs';
 
 export default function AccessoryDetail() {
 
@@ -31,16 +21,21 @@ export default function AccessoryDetail() {
   const [ ratingValue, setRatingValue ] = useState(0);
   const [ ratingHover, setRatingHover ] = useState(-1);
   const [ cartCount, setCartCount ] = useState(1);
-  const [ accessory, setAccessory ] = useState<IAccesorryDetail>({
+  const [ accessory, setAccessory ] = useState<IAccessory>({
     id: "",
+    toolCode: "",
     name: "",
     type1: "",
     type2: "",
+    sku: "",
     description: "",
-    prevPrice: "",
-    currentPrice: "",
-    fee: "",
+    img: "",
     imgs: [],
+    supplierId: null,
+    supplierName: "",
+    discounted: false,
+    originalPrice: 0,
+    price: 0,
   });
 
   useEffect(() => {
@@ -53,23 +48,27 @@ export default function AccessoryDetail() {
             const data = res.data;
 
             let imgData: string[] = [];
-            imgData.push(data['image'].imageUrl);
-            // data['images'].map((item: any) => {
-            //   const url = item.imageUrl;
-            //   imgData.push(url);
-            // });
+            data['images'].map((item: any) => {
+              const url = process.env.ENV === "production" ? getImageUrl(item.imageUrl) : item.imageUrl;
+              imgData.push(url);
+            });
 
             if (isMounted) {
               setAccessory({
-                id: typeof tid === 'string' ? tid : '',
+                id: typeof aid === 'string' ? aid : '',
+                toolCode: typeof tid === 'string' ? tid : '',
                 name: data.description.name,
                 description: data.description.description,
                 type1: "TELCO S2",
                 type2: "ART NR " + data.sku,
-                prevPrice: "2.545",
-                currentPrice: "1.795",
-                fee: "15",
-                imgs: imgData
+                img: "",
+                sku: "",
+                imgs: imgData,
+                supplierId: data.manufacturer.id,
+                supplierName: data.manufacturer.description.name,
+                discounted: data.productPrice.discounted,
+                originalPrice: data.productPrice.originalPrice,
+                price: data.productPrice.price,
               });
             }
           })
@@ -100,12 +99,9 @@ export default function AccessoryDetail() {
             <div>
               <Carousel showThumbs={true} thumbWidth={100}>
                 {
-                  accessory.imgs.map((item, index) => 
+                  accessory.imgs.map((item, index) =>
                     <div key={index}>
-                      <img src={item} />
-                      {/* <div className="carousel=image-wrapper">
-                        <Image src={item} alt="Accessory Image" layout="fill" objectFit="cover" />
-                      </div> */}
+                      <Image src={item} width={550} height={550} alt={"Product image"}/>
                     </div>
                   )
                 }
@@ -128,21 +124,31 @@ export default function AccessoryDetail() {
             <div className="">
               <div className="flex pb-3 w-full">
                 <div className="flex justify-content-center items-center">
-                  <span className="text-4xl font-black z-20"><span className={styles.accessoryDetail}>{accessory.prevPrice + ':-'}</span></span>
+                  <span className="text-4xl font-black z-20">
+                    <span className={styles.accessoryDetail}>
+                      {accessory.originalPrice !== accessory.price && accessory.originalPrice + ':-'}
+                    </span>
+                  </span>
                   {/* <div className="relative">
                     <div className={`absolute text-5xl ${styles.accessoryDetailFee3}`}>{'-'}</div>
                   </div> */}
-                  <span className="ml-1 text-red-600 text-5xl font-black">{accessory.currentPrice + ':-'}</span>
+                  <span className="ml-1 text-red-600 text-5xl font-black">
+                    {accessory.price}
+                    {accessory.originalPrice !== accessory.price && ':-'}
+                  </span>
                 </div>
                 {/* <div className="relative">
                   <div className={`absolute text-red-600 text-5xl ${styles.accessoryDetailFee1}`}>{'-'}</div>
                 </div> */}
-                <div className="relative">
-                  <div className={`absolute text-white font-black text-5xl ${styles.accessoryDetailFee2}`}>{'-'}</div>
-                  <div className="ml-2 bg-red-600 text-white text-4xl font-black rounded">
-                    <div className="ml-3 mr-1 py-1">{accessory.fee + '%'}</div>
+                {
+                  accessory.originalPrice !== accessory.price &&
+                  <div className="relative">
+                    <div className={`absolute text-white font-black text-5xl ${styles.accessoryDetailFee2}`}>{'-'}</div>
+                    <div className="ml-2 bg-red-600 text-white text-4xl font-black rounded">
+                      <div className="ml-3 mr-1 py-1">{Math.round(( accessory.originalPrice - accessory.price ) / accessory.originalPrice) + '%'}</div>
+                    </div>
                   </div>
-                </div>
+                }
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-12 pr-5">
                 <div className="col-span-1 sm:col-start-6 sm:col-span-7">

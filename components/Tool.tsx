@@ -1,26 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import styles from "../public/css/custom.module.css";
-
-export interface ITool {
-  id: string
-  name: string
-  type: string
-  description: string
-  toolId: string
-  code: string
-  url: string
-}
+import { ITool } from "@/typedefs";
 
 interface IToolProps {
-  tool: ITool
+  tool: ITool;
 }
 
 const Tool = (props: IToolProps) => {
-
   return (
     <div className="col-span-1 border-0 border-gray-300 bg-gray-200">
-      <Link href={`/tool/${props.tool.toolId}`} className="flex flex-col">
+      <Link href={`/tool/${props.tool.code}`} className="flex flex-col justify-between min-h-[350px]">
         <div className="px-3">
           <div className="py-5 mx-auto bg-[url('/elwotools-white.png')] bg-no-repeat bg-center bg-contain">
             <div className={`${styles.toolImg} bg-white flex justify-content-center items-center`}>
@@ -40,7 +30,7 @@ const Tool = (props: IToolProps) => {
           <p className="text-sm md:text-md lg:text-lg font-semibold">{props.tool.name}</p>
           <p className="text-sm md:text-md lg:text-lg">{props.tool.type}</p>
         </div>
-        <div className="mt-3 items-end">
+        <div className="mt-3 mb-0">
           <div className="grid grid-cols-2 content-end">
             <div className="col-start-2 col-span-1 text-center text-white py-2 bg-green-600">
               Buy

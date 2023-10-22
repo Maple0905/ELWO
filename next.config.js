@@ -12,6 +12,7 @@ const nextConfig = {
     return config;
   },
   env: {
+    ENV: process.env.ENV,
     API_URL: process.env.API_URL,
   },
   images: {

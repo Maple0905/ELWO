@@ -1,18 +1,8 @@
-import Image from "next/image"
-import Link from "next/link"
-import styles from '../public/css/custom.module.css';
-
-export interface IAccessory {
-  id: string
-  toolId: string
-  name: string
-  type: string
-  sku: string
-  prevPrice: string
-  currentPrice: string
-  fee: string
-  url: string
-}
+import Image from "next/image";
+import Link from "next/link";
+import styles from "../public/css/custom.module.css";
+import supplier1 from "../public/suppliers/1.svg";
+import { IAccessory } from "@/typedefs";
 
 interface IAccessoryProps {
   accessory: IAccessory,
@@ -25,47 +15,71 @@ const Accessory = (props: IAccessoryProps) => {
     props.handleCart(true);
   }
 
+  let supplierLogo;
+
+  switch (props.accessory.supplierId) {
+    case 1:
+      supplierLogo = supplier1;
+      break;
+  }
+
   return (
-    <div className="col-span-1 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain">
-      <div className="relative">
-        <div className={`rounded-bl-lg bg-red-600 text-sm text-white py-3 px-3 ${styles.wishlist}`}>
-          Wish
-        </div>
-      </div>
-      <Link href={`/tool/${props.accessory.toolId}/accessory/${props.accessory.id}`} className="py-5">
+    <div className="col-span-1 bg-gray-200 bg-[url('/elwotools-border-white.png')] bg-no-repeat bg-center bg-contain flex flex-col justify-between min-h-[400px]">
+      {
+        props.accessory.discounted && (
+          <div className="relative">
+            <div className={`rounded-bl-lg bg-red-600 text-sm text-white py-3 px-3 ${styles.wishlist}`}>
+              Kampanj
+            </div>
+          </div>
+        )
+      }
+      <Link href={`/tool/${props.accessory.toolCode}/accessory/${props.accessory.id}`}>
         <div className="my-3 px-5">
-          <h1 className="text-red-600 text-xl font-black text-left">BOSCH</h1>
+          <div className="h-[40px]">
+          {supplierLogo && (
+            <h1 className={`text-red-600 text-xl font-black text-left ${styles.accessoryLogo}`}>
+              <Image height={25} src={supplierLogo} alt={props.accessory.supplierName}/>
+            </h1>
+          )}
+          </div>
           <Image
             className="mx-auto"
-            src={props.accessory.url}
+            src={props.accessory.img}
             alt="Accessory Logo"
             width={200}
             height={200}
           />
         </div>
-        <div className="py-3 text-center">
-          <p className="text-xl font-black px-3">{props.accessory.name}</p>
-          <p className="text-lg py-2">{props.accessory.type}</p>
-          <div className="mx-auto">
-            <div className="flex items-center justify-center pb-3">
-              <div className="flex justify-center items-center">
-                <span className="text-md font-black z-20"><span className={styles.accessoryList}>{props.accessory.prevPrice + ':-'}</span></span>
-                <span className="ml-2 text-red-600 text-xl font-black">{props.accessory.currentPrice + ':-'}</span>
-              </div>
-              {/* <div className="relative">
-                <div className={`absolute text-red-600 text-xl ${styles.accessoryListFee1}`}>{'-'}</div>
-              </div> */}
-              <div className="relative flex justify-center items-center">
-                <div className={`absolute text-white text-xl font-black ${styles.accessoryListFee2}`}>{'-'}</div>
-                <div className="ml-1 bg-red-600 text-white text-md font-black rounded-sm">
-                  <p className="ml-2 mr-1">{props.accessory.fee + '%'}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </Link>
       <div className="">
+        <div className="py-3 text-center mb-0">
+          <p className="text-xl font-black px-3">{props.accessory.name}</p>
+          <p className="text-lg font-semibold py-2">{props.accessory.type1}</p>
+        </div>
+        <div className="mx-auto">
+          <div className="flex items-center justify-center pb-3">
+            <div className="flex justify-center items-center">
+              {props.accessory.originalPrice !== props.accessory.price && <span className="text-md font-black z-20"><span className={styles.accessoryList}>{props.accessory.originalPrice + ':-'}</span></span>}
+              <span className="ml-2 text-red-600 text-xl font-black">
+                {props.accessory.price}
+                {props.accessory.originalPrice !== props.accessory.price && ':-'}
+              </span>
+            </div>
+            {/* <div className="relative">
+              <div className={`absolute text-red-600 text-xl ${styles.accessoryListFee1}`}>{'-'}</div>
+            </div> */}
+            {
+              props.accessory.originalPrice !== props.accessory.price && 
+                <div className="relative flex justify-center items-center">
+                  <div className={`absolute text-white text-xl font-black ${styles.accessoryListFee2}`}>{'-'}</div>
+                  <div className="ml-1 bg-red-600 text-white text-md font-black rounded-sm">
+                    <p className="ml-2 mr-1">{Math.round((props.accessory.originalPrice - props.accessory.price) / props.accessory.originalPrice) + '%'}</p>
+                  </div>
+                </div>
+            }
+          </div>
+        </div>
         <button className="bg-green-600 hover:bg-green-800 text-white py-3 w-full flex justify-center items-center" onClick={handleCart}>
           <p>Add to cart</p>
           <svg className="ml-3" xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443" viewBox="0 0 14.706 13.534">
